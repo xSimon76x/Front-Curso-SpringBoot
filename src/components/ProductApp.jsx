@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { listProducts } from "../services/ProductServices";
+import { ProductGrid } from "./ProductGrid";
 
 export function ProductApp() {
 
@@ -11,21 +12,6 @@ export function ProductApp() {
     }, []);
     return <>
         <h1>Hola Mundo</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                {product.map( (prod, index) => (
-                    <tr key={index}>
-                        <td>{prod.name}</td>    
-                        <td>{prod.price}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <ProductGrid product={product} />
     </>
 }
