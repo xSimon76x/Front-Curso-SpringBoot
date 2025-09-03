@@ -1,28 +1,14 @@
-import { useState } from "react";
-
-
-
-const initProducts = [
-    {
-        name: "Monitor Samsung 68",
-        price: 350,
-    },
-    {
-        name: "Notebook Asus",
-        price: 850,
-    },
-    {
-        name: "Tablet Apple",
-        price: 450,
-    },
-];
-        
+import { useEffect, useState } from "react";
+import { listProducts } from "../services/ProductServices";
 
 export function ProductApp() {
 
     const [ product, setProduct ] = useState([]);
 
-    setProduct(initProducts);
+    useEffect( () => {
+        const result = listProducts();
+        setProduct(result);
+    }, []);
     return <>
         <h1>Hola Mundo</h1>
         <table>
