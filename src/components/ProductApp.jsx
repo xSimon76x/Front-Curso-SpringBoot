@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { listProducts } from "../services/ProductServices";
 import { ProductGrid } from "./ProductGrid";
+import PropTypes from "prop-types";
 
-export function ProductApp() {
+export function ProductApp({title}) {
 
     const [ product, setProduct ] = useState([]);
 
@@ -11,7 +12,11 @@ export function ProductApp() {
         setProduct(result);
     }, []);
     return <>
-        <h1>Hola Mundo</h1>
+        <h1>{title}</h1>
         <ProductGrid product={product} />
     </>
+}
+
+ProductApp.propTypes = {
+    title: PropTypes.string.isRequired
 }

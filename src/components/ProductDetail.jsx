@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 export const ProductDetail = ({product = []}) => {
 
     return <tr>
@@ -5,4 +7,8 @@ export const ProductDetail = ({product = []}) => {
         <td>{product.price}</td>
     </tr>
   
+}
+
+ProductDetail.propTypes = {
+    product: PropTypes.array.isRequired
 }
