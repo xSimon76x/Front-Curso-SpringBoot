@@ -2,18 +2,32 @@ import { useEffect, useState } from "react";
 import { listProducts } from "../services/ProductServices";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
+import { ProductForm } from "./ProductForm";
 
 export function ProductApp({title}) {
 
-    const [ product, setProduct ] = useState([]);
+    const [ products, setProduct ] = useState([]);
 
     useEffect( () => {
         const result = listProducts();
         setProduct(result);
     }, []);
+
+    const handlerAddProduct = (product) => {
+        console.log(product);
+        setProduct([...products, {...product}]);
+    }
+
     return <>
         <h1>{title}</h1>
-        <ProductGrid product={product} />
+        <div>
+            <div>
+                <ProductForm handlerAddProduct={handlerAddProduct} />
+            </div>
+            <div>
+                <ProductGrid product={products} />
+            </div>
+        </div>
     </>
 }
 
