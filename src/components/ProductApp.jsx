@@ -18,14 +18,21 @@ export function ProductApp({title}) {
         setProduct([...products, {...product}]);
     }
 
+    const handlerRemoveProduct = (name) => {
+        console.log(name);
+        setProduct( products.filter( p => p.name != name));
+    }
+
     return <>
         <h1>{title}</h1>
         <div>
             <div>
-                <ProductForm handlerAddProduct={handlerAddProduct} />
+                <ProductForm handlerAddProduct = {  handlerAddProduct} 
+                />
             </div>
             <div>
-                <ProductGrid product={products} />
+                <ProductGrid product={products} handlerRemoveProduct = {
+                    handlerRemoveProduct} />
             </div>
         </div>
     </>
