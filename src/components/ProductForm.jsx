@@ -1,17 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { initialDataForm } from "../services/ProductServices";
 
-const initialDataForm = {
-    name: '',
-    description: '',
-    price: ''
-};
 
-export const ProductForm = ({ handlerAddProduct }) => {
+
+export const ProductForm = ({ handlerAddProduct, productSelected }) => {
 
 
     const [form, setForm] = useState(initialDataForm);
 
     const { name, description, price } = form;
+
+    useEffect(() => {
+      setForm(productSelected);
+    }, [productSelected])
+    
 
     async function onSumbit(e) {
         e.preventDefault();

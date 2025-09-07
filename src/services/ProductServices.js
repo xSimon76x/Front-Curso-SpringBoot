@@ -18,6 +18,12 @@ const initProducts = [
     },
 ];
 
+export const initialDataForm = {
+    name: '',
+    description: '',
+    price: ''
+};
+
 export const listProducts = () => {
     return initProducts;
 }
