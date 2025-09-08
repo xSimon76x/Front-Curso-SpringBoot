@@ -6,8 +6,16 @@ export const ProductDetail = ({product = [], handlerRemoveProduct, handlerProduc
         <td>{product.name}</td>    
         <td>{product.description}</td>    
         <td>{product.price}</td>
-        <td><button onClick={() => handlerRemoveProduct(product.id)}>Delete</button></td>
-        <td><button onClick={() => handlerProductSelected(product)}>Update</button></td>
+        <td>
+            <button onClick={() => handlerProductSelected(product)} className="btn btn-secondary btn-sm">
+            Update
+            </button>
+        </td>
+        <td>
+            <button onClick={() => handlerRemoveProduct(product.id)} className="btn btn-danger btn-sm">
+                Delete
+            </button>
+        </td>
     </tr>
   
 }

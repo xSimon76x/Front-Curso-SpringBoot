@@ -42,20 +42,25 @@ export function ProductApp({title}) {
         setProductSelected({...product});
     }
 
-    return <>
-        <h1>{title}</h1>
-        <div>
+    return <div className="container my-4">
+        <h2>{title}</h2>
+        <div className="row">
             <div>
                 <ProductForm handlerAddProduct = {  handlerAddProduct} productSelected={productSelected}
                 />
             </div>
             <div>
-                <ProductGrid product={products} handlerRemoveProduct = {
-                    handlerRemoveProduct} 
-                    handlerProductSelected = {handlerProductSelected}/>
+                {
+                    products.length > 0 
+                    ? <ProductGrid product={products} handlerRemoveProduct = {
+                        handlerRemoveProduct} 
+                        handlerProductSelected = {handlerProductSelected}/>
+                    : <div className="alert alert-warning">No hay productos en el sistema!</div>
+
+                }
             </div>
         </div>
-    </>
+    </div>
 }
 
 ProductApp.propTypes = {

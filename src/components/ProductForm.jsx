@@ -8,7 +8,7 @@ export const ProductForm = ({ handlerAddProduct, productSelected }) => {
 
     const [form, setForm] = useState(initialDataForm);
 
-    const { name, description, price } = form;
+    const { id, name, description, price } = form;
 
     useEffect(() => {
       setForm(productSelected);
@@ -34,8 +34,8 @@ export const ProductForm = ({ handlerAddProduct, productSelected }) => {
             <div>
                 <input 
                     type="text" 
+                    className="form-control my-3 w-75"
                     placeholder="Name"
-                    style={{marginBottom: '6px'}}
                     name="name"
                     value={name}
                     onChange={(e) => setForm({
@@ -46,8 +46,8 @@ export const ProductForm = ({ handlerAddProduct, productSelected }) => {
             <div>
                 <input 
                     type="text" 
+                    className="form-control my-3 w-75"
                     placeholder="Description"
-                    style={{marginBottom: '6px'}}
                     name="description"
                     value={description}
                     onChange={(e) => setForm({
@@ -59,7 +59,7 @@ export const ProductForm = ({ handlerAddProduct, productSelected }) => {
                 <input 
                     type="text" 
                     placeholder="Price"
-                    style={{marginBottom: '6px'}}
+                    className="form-control my-3 w-75"
                     name="price"
                     value={price}
                     onChange={(e) => setForm({
@@ -68,7 +68,9 @@ export const ProductForm = ({ handlerAddProduct, productSelected }) => {
                 />
             </div>
             <div>
-                <button type="submit">Crear</button>
+                <button type="submit" className="btn btn-primary">
+                    { id > 0 ? 'Update' : 'Create'}
+                </button>
             </div>
 
         </form>
