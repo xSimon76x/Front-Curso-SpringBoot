@@ -15,13 +15,27 @@ export function ProductApp({title}) {
     }, []);
 
     const handlerAddProduct = (product) => {
-        console.log(product);
-        setProduct([...products, {...product}]);
+        
+        if (product.id > 0) {
+            // para actualizar un producto
+            setProduct(
+                products.map( (prod) => {
+                    if (prod.id == product.id) {
+                        return {...product};
+                    }
+                    return prod;
+                })
+            );
+            return;
+        }
+        // para agregar un nuevo producto
+        setProduct([...products, {...product, id: new Date().getTime()}]);
+
     }
 
-    const handlerRemoveProduct = (name) => {
-        console.log(name);
-        setProduct( products.filter( p => p.name != name));
+    const handlerRemoveProduct = (id) => {
+        console.log(id);
+        setProduct( products.filter( p => p.id != id));
     }
 
     const handlerProductSelected = (product) => {
