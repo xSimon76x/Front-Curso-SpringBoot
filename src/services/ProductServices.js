@@ -67,3 +67,11 @@ export const update = async (data) => {
     }
     return undefined;
 };
+
+export const remove = async (id) => {
+    try {
+        await axios.delete(baseURL + "/" + id);
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create, findAll, initialDataForm, update } from "../services/ProductServices";
+import { create, findAll, initialDataForm, remove, update } from "../services/ProductServices";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
 import { ProductForm } from "./ProductForm";
@@ -40,8 +40,9 @@ export function ProductApp({title}) {
 
     }
 
-    const handlerRemoveProduct = (id) => {
+    const handlerRemoveProduct = async (id) => {
         console.log(id);
+        await remove(id);
         setProduct( products.filter( p => p.id != id));
     }
 
