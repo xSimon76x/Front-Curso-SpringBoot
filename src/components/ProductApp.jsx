@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { initialDataForm, listProducts } from "../services/ProductServices";
+import { findAll, initialDataForm, listProducts } from "../services/ProductServices";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
 import { ProductForm } from "./ProductForm";
@@ -8,11 +8,16 @@ export function ProductApp({title}) {
 
     const [ products, setProduct ] = useState([]);
     const [ productSelected, setProductSelected ] = useState(initialDataForm);
-
+    
     useEffect( () => {
-        const result = listProducts();
-        setProduct(result);
+        getProducts();
     }, []);
+    
+    const getProducts = async () => {
+        const result = await findAll();
+        console.log(result);
+        setProduct(result.data._embedded.products);
+    }
 
     const handlerAddProduct = (product) => {
         

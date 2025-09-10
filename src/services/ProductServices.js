@@ -1,4 +1,7 @@
+import axios from "axios";
 
+
+const baseURL = "http://localhost:8080/products";
 
 const initProducts = [
     {
@@ -30,4 +33,15 @@ export const initialDataForm = {
 
 export const listProducts = () => {
     return initProducts;
+}
+
+export const findAll = async () => {
+
+    try {
+        const response = await axios.get(baseURL);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+    return null;
 }
