@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { findAll, initialDataForm, listProducts } from "../services/ProductServices";
+import { create, findAll, initialDataForm, update } from "../services/ProductServices";
 import { ProductGrid } from "./ProductGrid";
 import PropTypes from "prop-types";
 import { ProductForm } from "./ProductForm";
@@ -19,14 +19,15 @@ export function ProductApp({title}) {
         setProduct(result.data._embedded.products);
     }
 
-    const handlerAddProduct = (product) => {
+    const handlerAddProduct = async (product) => {
         
         if (product.id > 0) {
             // para actualizar un producto
+            const response = await update(product);
             setProduct(
                 products.map( (prod) => {
-                    if (prod.id == product.id) {
-                        return {...product};
+                    if (prod.id == response.data.id) {
+                        return {...response.data};
                     }
                     return prod;
                 })
@@ -34,7 +35,8 @@ export function ProductApp({title}) {
             return;
         }
         // para agregar un nuevo producto
-        setProduct([...products, {...product, id: new Date().getTime()}]);
+        const response = await create(product);
+        setProduct([...products, {...response.data }]);
 
     }
 

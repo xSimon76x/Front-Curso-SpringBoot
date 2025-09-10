@@ -45,3 +45,25 @@ export const findAll = async () => {
     }
     return null;
 }
+
+export const create = async (data) => {
+    try {
+        const response = await axios.post(baseURL, ...data);
+        return response;
+        
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+};
+
+export const update = async (data) => {
+    try {
+        const response = await axios.put(baseURL + "/" + data.id, ...data);
+        return response;
+        
+    } catch (error) {
+        console.log(error);
+    }
+    return undefined;
+};
